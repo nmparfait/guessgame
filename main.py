@@ -39,13 +39,17 @@ def game():
   answer = randint(1, 100)
   print(f"Psssss the correct answer is {answer}")
   turns = set_difficulty()
-  print(f"You have {turns} attempts")
+  
 
   #Repeat the guessing functionnality to see if they get it wrong
   guess = 0
   while guess != answer:
+    print(f"You have {turns} attempts")
     guess = int(input("Make a guess "))
     turns = check_answer(guess, answer, turns)
+    if turns == 0:
+      print("You've run out of guesses. You lose!")
+      return
 
 game()
 
