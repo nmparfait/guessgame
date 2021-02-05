@@ -7,6 +7,7 @@ HARD_LEVEL_TURNS = 5
 
 #check the difficulty
 def set_difficulty():
+  """ Giving to the user the possibility to select the level he would like to play"""
   level = input("Choose a difficulty. Type 'easy' or 'hard': ")
   if level == "easy":
     return EASY_LEVEL_TURNS
@@ -14,15 +15,22 @@ def set_difficulty():
     return HARD_LEVEL_TURNS
 
 #Make a function to check the answer
-def check_answer(guess, answer):
+#Track the number of turns and reduce by 1 if they get it wrong.
+def check_answer(guess, answer, turns):
+  """ Check guess against answer and also track the number of turns remainiing """
   if guess > answer:
     print("Too high.")
+    return turns - 1 
   elif guess < answer:
     print("Too low.")
+    return turns - 1 
   else:
     print(f"You got it! The answer was {answer}.")
+#Making a function to define our game
 #Choosing a random number between 1 and 100.
 def game():
+  """Calling our function all together to get the game functionnality"""
+
   #Welcome to the game 
   print("Welcome to the Guessing Game!")
   print("I'm thinking of a number between 1 and 100.")
@@ -37,7 +45,7 @@ def game():
   guess = 0
   while guess != answer:
     guess = int(input("Make a guess "))
-    check_answer(guess, answer)
+    turns = check_answer(guess, answer, turns)
 
 game()
 
@@ -45,11 +53,6 @@ game()
 
 
 
-#Function to check the user's guess against actual answer. 
-
-#Track the number of turns and reduce by 1 if they get it wrong.
-
-#Repeat the guessing functionality if they get it wrong.
 
 
 
